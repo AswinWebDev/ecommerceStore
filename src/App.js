@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import ProductContainer from "./components/ProductContainer";
 import ProductDetails from "./components/ProductDetails";
+import CartDetails from "./components/CartDetails";
 const App = () => {
   //////// - Darkmode - //////////////
   const [mode, setMode] = useState("light");
@@ -45,17 +46,14 @@ const App = () => {
   }, [jsonData, searchField]);
   //////////////////////searchField///////////////////
   //////////////////////////----Cart----//////////////////////
-  const [cartValue, setCartValue] = useState(0);
-  const cart = () => {
-    setCartValue((preval) => preval + 1);
-  };
+  const [cart, setCart] = useState([]);
   //////////////////////////----Cart----//////////////////////
   return (
     <ThemeProvider theme={darkTheme}>
       <Box bgcolor="background.default" color={"text.primary"}>
         <Navbar
           onChangeHandler={searchChange}
-          cartValue={cartValue}
+          cart={cart}
           setMode={setMode}
           mode={mode}
         />
@@ -65,14 +63,29 @@ const App = () => {
             element={
               <Box>
                 <Stack direction="row" spacing={3} justifyContent="center">
-                  <ProductContainer jsonData={filteredJsonData} cart={cart} />
+                  <ProductContainer
+                    jsonData={filteredJsonData}
+                    cart={cart}
+                    setCart={setCart}
+                  />
                 </Stack>
               </Box>
             }
           />
           <Route
             path="/products/:id"
-            element={<ProductDetails jsonData={filteredJsonData} cart={cart} />}
+            element={
+              <ProductDetails
+                jsonData={filteredJsonData}
+                cart={cart}
+                setCart={setCart}
+              />
+            }
+          />
+          {/*  */}
+          <Route
+            path="/cart"
+            element={<CartDetails cart={cart} setCart={setCart} />}
           />
         </Routes>
       </Box>

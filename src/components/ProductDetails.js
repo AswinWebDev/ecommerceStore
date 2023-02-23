@@ -10,7 +10,7 @@ import {
 import { Box } from "@mui/system";
 import React from "react";
 import { useParams } from "react-router-dom";
-const ProductDetails = ({ jsonData, cart }) => {
+const ProductDetails = ({ jsonData, cart, setCart }) => {
   const params = useParams();
   const renderedDataTemp = jsonData.filter((mov) => {
     return mov.id === +params.id;
@@ -35,7 +35,12 @@ const ProductDetails = ({ jsonData, cart }) => {
               </Typography>
             </CardContent>
             <CardActions>
-              <Button size="medium" onClick={cart}>
+              <Button
+                size="medium"
+                onClick={() => {
+                  setCart([...cart, renderedData]);
+                }}
+              >
                 Add to Cart
               </Button>
             </CardActions>

@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { Button, CardActionArea, CardActions, Grid } from "@mui/material";
 // import { Box } from "@mui/system";
 
-const Product = ({ mov, cart }) => {
+const Product = ({ mov, cart, setCart }) => {
   return (
     <Grid item sm={3} sx={{ mt: "20px" }}>
       <Card
@@ -57,7 +57,14 @@ const Product = ({ mov, cart }) => {
           </Link>
         </CardActionArea>
         <CardActions sx={{ position: "absolute", bottom: "0" }}>
-          <Button size="small" color="primary" onClick={cart}>
+          <Button
+            size="small"
+            color="primary"
+            onClick={() => {
+              setCart([...cart, mov]);
+              // console.log(cart);
+            }}
+          >
             Add to Cart
           </Button>
         </CardActions>

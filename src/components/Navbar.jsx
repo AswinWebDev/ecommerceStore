@@ -48,7 +48,7 @@ const UserBox = styled(Box)(({ theme }) => ({
   },
 }));
 
-const Navbar = ({ onChangeHandler, cartValue, setMode, mode }) => {
+const Navbar = ({ onChangeHandler, cart, setMode, mode }) => {
   const [open, setOpen] = useState(false);
   return (
     <AppBar position="sticky" sx={{ backgroundColor: "	darkslategray" }}>
@@ -78,9 +78,11 @@ const Navbar = ({ onChangeHandler, cartValue, setMode, mode }) => {
           <Switch
             onChange={(e) => setMode(mode === "light" ? "dark" : "light")}
           />
-          <Badge badgeContent={cartValue} color="error">
-            <ShoppingCartIcon color="white" />
-          </Badge>
+          <Link to={`/cart`} style={{ textDecoration: "none", color: "white" }}>
+            <Badge badgeContent={cart.length} color="error">
+              <ShoppingCartIcon color="white" />
+            </Badge>
+          </Link>
 
           <Avatar
             sx={{ width: 30, height: 30 }}
@@ -110,7 +112,14 @@ const Navbar = ({ onChangeHandler, cartValue, setMode, mode }) => {
           horizontal: "left",
         }}
       >
-        <MenuItem>Profile</MenuItem>
+        <MenuItem>
+          {" "}
+          <Link to={`/cart`} style={{ textDecoration: "none", color: "red" }}>
+            <Badge badgeContent={cart.length} color="error">
+              <ShoppingCartIcon color="white" />
+            </Badge>
+          </Link>
+        </MenuItem>
         <MenuItem>My account</MenuItem>
         <MenuItem>Logout</MenuItem>
       </Menu>
