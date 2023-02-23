@@ -2,6 +2,8 @@
 
 Wrappy is an e-commerce store built using Create React App. This project was created to showcase the basic functionalities of an e-commerce store such as displaying products, showing product details, adding products to the cart, and removing products from the cart.
 
+Hosted on `https://wrappy.netlify.app/`
+
 ## API
 
 The product details used in this project are fetched from the Fakestore API. The API provides access to product details such as title, description, price, and image.
